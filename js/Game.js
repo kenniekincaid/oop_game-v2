@@ -5,19 +5,31 @@
 //...getting a random phrase, checking for a win, and removing a life from the scoreboard.
 
 //Declare the Game class...
-
-//const game = new Game();
-
 class Game {
     constructor(){ //constructor method...does not receive any parameters
         this.missed = 0; //initial value is zero.
-        this.phrases = ['Do more than is required', 'We are what we believe', 'Courage is to think for yourself', 'The best revenge is success', 'Everything starts with a dream']; //initialized to an emptry array.
-        this.activePhrase = `null`; //the phrase currently in play; initial value of `null`.
+        this.phrases = [new Phrase('Go the extra mile'),
+            new Phrase('Do more than is required'),
+            new Phrase('Actions speak louder than words'), 
+            new Phrase('Courage is thinking for yourself'), 
+            new Phrase('The best revenge is success'), 
+            new Phrase('Everything starts with a dream'),
+            new Phrase('Be your own unique self'),
+            new Phrase('We are what we believe'),
+            new Phrase('Look up and never give up'),
+            new Phrase('Faith gives evidence to hope'),
+            new Phrase('Challenges stimulate growth'),
+            new Phrase('You exist because you are needed'),
+            new Phrase('Everything starts with a dream')]
+        this.activePhrase = null; //the phrase object currently in play; initial value of null.
     }
-    getRandomPhrase () { //Selects a random phrase from the phrases property.
-        const phraseIndex = Math.floor(Math.random() * this.phrases.length); //checks the complete list of arrays
-        return phraseIndex; //returns array from phrase index.
-    }
-} // Codes are working up to this point. Committed to GitHub!
+
+    //Getting Random Phrase: 
+    getRandomPhrase() {
+        const randomPhraseIndex = Math.floor(Math.random() * this.phrases.length); //checks the complete list of arrays
+        return randomPhraseIndex; //returns random phrases from the phrase index.
+    };
 
 
+
+}
