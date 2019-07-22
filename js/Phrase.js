@@ -1,50 +1,44 @@
-        // Treehouse FSJS Techdegree
-        // Project 4 - OOP Game App
-        // Phrase.js
+// Treehouse FSJS Techdegree
+// Project 4 - OOP Game App
+// Phrase.js
 //PURPOSE: To create a Phrase class to handle the creation of phrases.
 
 //Declare the Phrase class...
 class Phrase {
-    constructor(phrase){ //The phrase constructor function.
-       this.phrase = phrase.toLowerCase();//set to the phrase parameter; covert to lower case.
+    constructor(phrase) { //The phrase constructor function.
+        this.phrase = phrase.toLowerCase(); //set to the phrase parameter; covert to lower case.
     }
 
     //This area will loop through phrases, split each into characters, & append characters to placeholders based on character type.
     addPhraseToDisplay() {
-        const phraseSplitter = this.phrase.split(''); //Process that will split the phrases:
+        const phraseSplit = this.phrase.split(''); //Process that will split the phrases:
         const $ul = $('#phrase ul'); //Create list items and append to parent ul:
-            // $ul.innerHTML = ''; //puts spaces in the document.
 
-        phraseSplitter.forEach((characterInPlay) => {
-            const li = $ul.append(`<li class="hide letter ${characterInPlay}">${characterInPlay}</li>`);
-            $ul.append(li); //appends phrase lettes to the phrase ul.
-            const liSpace = $ul.append(`<li class="space"> </li>`);
-            $ul.append(liSpace); //appends spaces to the phrase ul.
-
-            //conditional statement; when to do what...
-            if(characterInPlay === '') {
-                return liSpace;
+        phraseSplit.forEach((character) => { //conditional statement; when to do what...
+            if (character === ' ') { //if the character is a space...
+                //create the space list item
+                $ul.append(`<li class="space"> </li>`); //and append the space li to the #phrase ul.
             } else {
-                return li;
+                $ul.append(`<li class="hide letter ${character}">${character}</li>`); //appends phrase lettes to the #phrase ul.                
             }
         });
     }
 
-        // //Checks if the letters the user chose match the letter of the phrase being played.
-        // checkLetter(letter) {
-        //     if (this.phrase.includes(letter)) {
-        //         return true;
-        //     }else{
-        //         return false;
-        //     }
-        // }
+    //Handling Interactions:
+    checkLetter(letter) { //checks if chosen letter matches a letter in the phrase
+        for(let i = 0; i < this.phrase.length; i++) {
+            if (this.phrase[i] === letter) { //checks for instances of matching characters
+                return true; //yes match is true
+            }
+        }
+        return false; //no match is false
 
-        // showMatchedLetter(letter) {
-        //     let matchedLetterLi = (`.${letter}`);
-        //     matchedLetterLi.removeClass('hide').addClass('show');
-        // }
+        // return this.phrase.split('').includes(letter);
 
+    }
 
+    showMatchedLetter(letter) { //apply styling for showing the letter.
+        $(`li.letter:contains(${letter})`).removeClass('hide').addClass('show');
+    }
 }
-
 //Codes are working up to this point. Committed to GitHub!

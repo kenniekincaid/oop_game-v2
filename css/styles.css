@@ -81,7 +81,7 @@ button {
 
 #phrase ul li{
   margin-top: 15px;
-  word-wrap: normal;
+  /* word-wrap: normal; */
 }
 
 /* Title */

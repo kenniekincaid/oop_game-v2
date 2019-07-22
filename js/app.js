@@ -18,14 +18,21 @@ const game = new Game(); //DO NOT DELETE! Created instance of the Game class.
             // const logPhrase = (phrase) => {
             //     console.log(`Phrase - phrase: `, phrase.phrase);
             // };
-                // logPhrase(game.getRandomPhrase());
-                // logPhrase(game.getRandomPhrase());
-                // logPhrase(game.getRandomPhrase());
-                // logPhrase(game.getRandomPhrase());
-                // logPhrase(game.getRandomPhrase());
-        //TEST CODE WORKING! //game.getRandomPhrase().addPhraseToDisplay();
+            //     logPhrase(game.getRandomPhrase());
+            //     logPhrase(game.getRandomPhrase());
+            //     logPhrase(game.getRandomPhrase());
+            //     logPhrase(game.getRandomPhrase());
+            //     logPhrase(game.getRandomPhrase());
+        // TEST CODE WORKING! 
+        // game.getRandomPhrase().addPhraseToDisplay();
 
 
+//Event listener for the Start Button.
+$("#btn__reset").on('click', (e) => { //get element by id and add click event.
+    game.startGame(e); //startGame method called on game variable.
+});
 
-
+        // Code NOT working...
+        game.startGame();
+        console.log(`Active Phrase - phrase: ${game.activePhrase.phrase}`);
 
