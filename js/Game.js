@@ -49,11 +49,12 @@ class Game {
 
 //USER INTERACTION:
     checkForWin() {
-        const $playerLetters = $('.show').length;     
+        const playerLetters = $('.hide').length;     
        
-        if ($playerLetters == this.phrase.length) { // if player selected all letters in the phrase
-            this.winner(true);
+        if (playerLetters == 0) { // if player selected all letters in the phrase
+            return true;
         }
+        return false;
     }
 
     removeLife() {
@@ -80,7 +81,7 @@ class Game {
             $overlay.removeClass("start").addClass("lose");
             $gameOver.empty().text("TRY AGAIN!");
         }
-        this.activePhrase = " ";
+        // this.activePhrase = "";
 
         $(".key").attr("disabled", false).removeClass("chosen").removeClass("wrong"); //reset letters
         $("tries .img").attr("src", "images/liveHeart.png"); //reset lives
@@ -88,14 +89,15 @@ class Game {
         this.resetGame();
     }
 
-    handleInteraction() { //Use my variables...
-       $(".key").attr("disabled", true); //
-        if (!this.activePhrase.checkLetter($(".key").text())) {
-            $(".key").addClass("wrong");
-            this.removeLife(true);
+    handleInteraction(letter) { //Use my variables.... // needs to be able to use .key for extra credit part.
+        let button = $(`.key:contains(${letter})`);
+        button.attr("disabled", true);
+        if (!this.activePhrase.checkLetter(letter)) {
+            button.addClass("wrong");
+            this.removeLife();
         } else {
-            $(".key").addClass("chosen");
-            this.activePhrase.showMatchedLetter($(".key").text());
+            button.addClass("chosen");
+            this.activePhrase.showMatchedLetter(letter);
             if(this.checkForWin()) {
                 this.gameOver(true);
             }
@@ -103,9 +105,8 @@ class Game {
     }
 
     resetGame() {
-        this.activePhrase = '';
+        this.activePhrase = null;
             $(".key").attr("disabled", false).removeClass("chosen").removeClass("wrong"); //reset letters
             $("tries .img").attr("src", "images/liveHeart.png"); //reset lives
     }
-
 }

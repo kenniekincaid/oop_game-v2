@@ -34,7 +34,9 @@ $("#btn__reset").on('click', (e) => game.startGame(e)); //get element by id and 
             // game.startGame();
             // console.log(`Active Phrase - phrase: ${game.activePhrase.phrase}`);
 
-$(".key").on('click', (e) => game.handleInteraction(e.target.text()));
+$(".key").on('click', (event) => game.handleInteraction($(event.target).text()));
+
+$('body').on('keyup', (event) => game.handleInteraction(event.key));
 
   
 
