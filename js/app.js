@@ -24,15 +24,18 @@ const game = new Game(); //DO NOT DELETE! Created instance of the Game class.
             //     logPhrase(game.getRandomPhrase());
             //     logPhrase(game.getRandomPhrase());
         // TEST CODE WORKING! 
-        // game.getRandomPhrase().addPhraseToDisplay();
-
+            // game.getRandomPhrase().addPhraseToDisplay();
 
 //Event listener for the Start Button.
-$("#btn__reset").on('click', (e) => { //get element by id and add click event.
-    game.startGame(e); //startGame method called on game variable.
-});
+$("#btn__reset").on('click', (e) => game.startGame(e)); //get element by id and add click event.
+//startGame method called on game variable.
 
-        // Code NOT working...
-        game.startGame();
-        console.log(`Active Phrase - phrase: ${game.activePhrase.phrase}`);
+        //TEST CODE WORKING!
+            // game.startGame();
+            // console.log(`Active Phrase - phrase: ${game.activePhrase.phrase}`);
+
+$("#qwerty .key").on('click', (e) => game.handleInteraction(e));
+
+
+
 

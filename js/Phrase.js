@@ -28,17 +28,13 @@ class Phrase {
     checkLetter(letter) { //checks if chosen letter matches a letter in the phrase
         for(let i = 0; i < this.phrase.length; i++) {
             if (this.phrase[i] === letter) { //checks for instances of matching characters
-                return true; //yes match is true
+                return true; //If there is a match
             }
         }
-        return false; //no match is false
-
-        // return this.phrase.split('').includes(letter);
-
-    }
+        return false; //if there is no match; placed AFTER for loop so it can run the entire phrase before it returns false
+    } //Could've written the above code in one line: return this.phrase.split('').includes(letter);
 
     showMatchedLetter(letter) { //apply styling for showing the letter.
         $(`li.letter:contains(${letter})`).removeClass('hide').addClass('show');
     }
-}
-//Codes are working up to this point. Committed to GitHub!
+}//Codes are working up to this point. Committed to GitHub!
