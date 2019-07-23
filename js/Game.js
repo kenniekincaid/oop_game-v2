@@ -48,61 +48,64 @@ class Game {
 
 
 //USER INTERACTION:
-    handleInteraction(event) {
-       let letter  = $(event.target).text();
-
-       $(event.target).prop("disabled", true);
-
-        if(this.activePhrase.checkLetter(letter)) {
-            $(event.target).addClass("chosen");
-            this.activePhrase.showMatchedLetter(letter);
-                if(this.checkForWin()) {
-                    this.gameOver();
-                }
-        } else {
-            $(event.target).addClass("wrong");
-            this.removeLife();
-    
+    checkForWin() {
+        const $playerLetters = $('.show').length;     
+       
+        if ($playerLetters == this.phrase.length) { // if player selected all letters in the phrase
+            this.winner(true);
         }
     }
 
     removeLife() {
-        const $lives = $('#scoreboard li img');
-        const $livesLost = $lives[this.missed];
-
-        $livesLost.attr("src", "images/lostHeart.png");
-            this.missed += 1;
+        const $lives = $('img'); //assigned heart image to lives variable
+        const $livesLost = $lives[this.missed]; //assigned this missed to lives lost
+        $livesLost.src = "images/lostHeart.png"; //added source to lives lost
+            
+        this.missed ++; //Adding a missed life heart to the game.
         
-        if(this.missed === 5) {
-            this.gaveOver();
+        if(this.missed === 5) { //game lost if all 5 missed hearts are added.
+            this.gameOver(false);
         }
     }
 
-    checkForWin() {
-        return $('phrase.ul.hide').length === 0; //Boolean to test if true for win or false for lose.
-    }
-
-    gameOver() {
-        let $overlay = $('#overlay');
+    gameOver(gameWon) {
+        let $overlay = $('#overlay'); 
         const $gameOver = $('#game-over-message');
-        
         $overlay.show().removeClass("start"); //removes the start class so the lose or win classes can be appended
 
-        if(this.missed === 5) {
-            $overlay.addclass("lose");
-            $gameOver.text("TRY AGAIN! You lose.");
+        if (gameWon == true) {
+            $overlay.removeClass("start").addClass("win");
+            $gameOver.empty().text("YOU WON!")
         } else {
-            $overlay.removeClass("lose").addClass("win");
-            $gameOver.text("CONGRATS WINNER!")
+            $overlay.removeClass("start").addClass("lose");
+            $gameOver.empty().text("TRY AGAIN!");
+        }
+        this.activePhrase = " ";
+
+        $(".key").attr("disabled", false).removeClass("chosen").removeClass("wrong"); //reset letters
+        $("tries .img").attr("src", "images/liveHeart.png"); //reset lives
+    
+        this.resetGame();
+    }
+
+    handleInteraction() { //Use my variables...
+       $(".key").attr("disabled", true); //
+        if (!this.activePhrase.checkLetter($(".key").text())) {
+            $(".key").addClass("wrong");
+            this.removeLife(true);
+        } else {
+            $(".key").addClass("chosen");
+            this.activePhrase.showMatchedLetter($(".key").text());
+            if(this.checkForWin()) {
+                this.gameOver(true);
+            }
         }
     }
 
-    resetGameboard() {
-        const $keypad = $('#qwerty .key');
-        $('#scoreboard li').prop("src", 'images/liveHeart.png').removeClass("lost");
-
-        $overlay.removeClass("lose").removeClass("win");
-        $keypad.removeClass("chosen").removeClass("wrong").prop("disabled", false);
+    resetGame() {
+        this.activePhrase = '';
+            $(".key").attr("disabled", false).removeClass("chosen").removeClass("wrong"); //reset letters
+            $("tries .img").attr("src", "images/liveHeart.png"); //reset lives
     }
 
 }

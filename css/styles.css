@@ -28,6 +28,8 @@ body {
   flex-direction: column;
   display: flex;
   height: 100vh;
+  background-image: url("https://pilgrimatthecrossroads.files.wordpress.com/2015/03/blogpost91world.jpg");
+  background-size: cover;
 }
 
 li, ol, ul {
@@ -120,6 +122,10 @@ button {
   border-radius: 5px;
   -webkit-animation-duration: .5s;
   animation-duration: .5s;
+}
+
+.hide {
+  user-select: none;
 }
 
 /* Keyboard */

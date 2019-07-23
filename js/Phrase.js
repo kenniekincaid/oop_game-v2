@@ -32,7 +32,17 @@ class Phrase {
             }
         }
         return false; //if there is no match; placed AFTER for loop so it can run the entire phrase before it returns false
-    } //Could've written the above code in one line: return this.phrase.split('').includes(letter);
+    
+        //  Could've written the above code in one line: 
+        // return this.phrase.split('').includes(letter);
+
+                //or as:
+                    // if(this.phrase.includes(letter)) {
+                    //     return true;
+                    // } else {
+                    //     return false;
+                    // }
+    }
 
     showMatchedLetter(letter) { //apply styling for showing the letter.
         $(`li.letter:contains(${letter})`).removeClass('hide').addClass('show');
