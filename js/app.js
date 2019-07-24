@@ -4,39 +4,35 @@
 //FILE PURPOSE: Create a new instance of the `Game` class and add event listeners 
 // for the start button and onscreen keyboard buttons
 
-const game = new Game(); //DO NOT DELETE! Created instance of the Game class.
 
-        //TEST CODE WORKING! text appears in console in lower case.
-            // const phrase = new Phrase('Life is like a box of chocolates');
-            // console.log(`Phrase - phrase: ${phrase.phrase}`);
+// Created instance of the of the game class.
+const game = new Game();
 
-        //TEST CODE WORKING! phrases appear in lower case with index.
-            // game.phrases.forEach((phrase, index) => {
-            //     console.log(`Phrase ${index} - phrase: ${phrase.phrase}`);
-            // });
-        //TEST CODE WORKING!
-            // const logPhrase = (phrase) => {
-            //     console.log(`Phrase - phrase: `, phrase.phrase);
-            // };
-            //     logPhrase(game.getRandomPhrase());
-            //     logPhrase(game.getRandomPhrase());
-            //     logPhrase(game.getRandomPhrase());
-            //     logPhrase(game.getRandomPhrase());
-            //     logPhrase(game.getRandomPhrase());
-        // TEST CODE WORKING! 
-            // game.getRandomPhrase().addPhraseToDisplay();
-
-//Event listener for the Start Button.
-$("#btn__reset").on('click', (e) => game.startGame(e)); //get element by id and add click event.
+//Added click event listener to the Start Button and called startGame.
+$("#btn__reset").on('click', () => game.startGame()); //get element by id and add click event.
 //startGame method called on game variable.
 
-        //TEST CODE WORKING!
-            // game.startGame();
-            // console.log(`Active Phrase - phrase: ${game.activePhrase.phrase}`);
+//Added click to start button automatically whenever the 'ENTER' key is pressed.
+$('#overlay').keypress((event) => {
+    var keycode = (event.keyCode ? event.keyCode : event.which);
+    if(keycode == 13){
+        game.startGame();
+        event.stopPropagation();
+        return false;
+    }
+});
 
-$(".key").on('click', (event) => game.handleInteraction($(event.target).text()));
+//User mouse 'click'  to onscreen keyboardfunctionality.
+$(".key").on('click', (e) => game.handleInteraction($(e.target).text()));
 
-$('body').on('keyup', (event) => game.handleInteraction(event.key));
+//EXTRA CREDIT! User keyboard to onscreen keyboard functionality.
+$('body').on('keyup', (e) => {
+    // if the overlay is visible
+        // if keycode is 13
+            // game.startGame()
+    // else 
+    game.handleInteraction(e.key);
+});
 
   
 

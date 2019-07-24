@@ -3,48 +3,38 @@
 // Phrase.js
 //PURPOSE: To create a Phrase class to handle the creation of phrases.
 
-//Declare the Phrase class...
+//DECLARE PHRASE CLASS:
 class Phrase {
     constructor(phrase) { //The phrase constructor function.
         this.phrase = phrase.toLowerCase(); //set to the phrase parameter; covert to lower case.
     }
 
-    //This area will loop through phrases, split each into characters, & append characters to placeholders based on character type.
+    //loop through phrases, split each into characters, & append characters to placeholders based on class type.
     addPhraseToDisplay() {
         const phraseSplit = this.phrase.split(''); //Process that will split the phrases:
         const $ul = $('#phrase ul'); //Create list items and append to parent ul:
 
         phraseSplit.forEach((character) => { //conditional statement; when to do what...
             if (character === ' ') { //if the character is a space...
-                //create the space list item
-                $ul.append(`<li class="space"> </li>`); //and append the space li to the #phrase ul.
+                $ul.append(`<li class="space"> </li>`); //...create and append the space li to the #phrase ul.
             } else {
-                $ul.append(`<li class="hide letter ${character}">${character}</li>`); //appends phrase lettes to the #phrase ul.                
+                $ul.append(`<li class="hide letter ${character}">${character}</li>`); //append phrase letters.
             }
         });
     }
 
-    //Handling Interactions:
-    checkLetter(letter) { //checks if chosen letter matches a letter in the phrase
-        for(let i = 0; i < this.phrase.length; i++) {
-            if (this.phrase[i] === letter) { //checks for instances of matching characters
-                return true; //If there is a match
+    //HANDLING INTERACTIONS:
+    checkLetter(letter) {//Check if letter selected by user is in the phrase...
+        for(let i = 0; i < this.phrase.length; i++) {//run through the entire phrase to...
+            if (this.phrase[i] === letter) { //...check for instances of matching letters ...
+                //NOTE: Could have used "if(this.phrase.includes(letter)) for the above line.
+                return true; //matching letter is found.
             }
         }
-        return false; //if there is no match; placed AFTER for loop so it can run the entire phrase before it returns false
-    
-        //  Could've written the above code in one line: 
-        // return this.phrase.split('').includes(letter);
+        return false; //phrase was looped through and no match is found.
+    } //NOTE: Concise one-liner... return this.phrase.split('').includes(letter);
 
-                //or as:
-                    // if(this.phrase.includes(letter)) {
-                    //     return true;
-                    // } else {
-                    //     return false;
-                    // }
-    }
-
-    showMatchedLetter(letter) { //apply styling for showing the letter.
+    showMatchedLetter(letter) { //Apply 'show' styling to matching letter.
         $(`li.letter:contains(${letter})`).removeClass('hide').addClass('show');
     }
-}//Codes are working up to this point. Committed to GitHub!
+}

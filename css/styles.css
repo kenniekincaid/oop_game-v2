@@ -28,8 +28,8 @@ body {
   flex-direction: column;
   display: flex;
   height: 100vh;
-  background-image: url("https://pilgrimatthecrossroads.files.wordpress.com/2015/03/blogpost91world.jpg");
-  background-size: cover;
+  background-image: url("https://images8.alphacoders.com/475/thumb-1920-475508.jpg");
+  background-size: 100% 100%;
 }
 
 li, ol, ul {
@@ -103,8 +103,6 @@ button {
   color: transparent;
   background: var(--color-neutral-light);
   border-radius: 5px;
-  white-space: pre-wrap; /*wrapping text*/
-  word-break: keep-all; /*this stops the word breaking*/
 }
 
 .space {
