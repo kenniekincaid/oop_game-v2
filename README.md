@@ -12,4 +12,6 @@
 <!-- This was an awesome project, and I wish I had more time to make it pretty. I wanted to add red hello kitty bows instead of hearts, do some font changes on the overlay, etc. I just might come back and do so in the future. -->
 
 <!-- Thank you for reading!!!! -->
+
+<!-- By: Kendra Roberson -->
  

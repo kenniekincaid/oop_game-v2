@@ -26,16 +26,15 @@ class Phrase {
     //HANDLING INTERACTIONS:
     checkLetter(letter) {//Check if letter selected by user is in the phrase...
         for(let i = 0; i < this.phrase.length; i++) {//run through the entire phrase to...
-            if (this.phrase[i] === letter) { //...check for instances of matching letters ...
-                //NOTE: Could have used "if(this.phrase.includes(letter)) for the above line.
+            if (this.phrase[i] === letter) { //check for matching letters; could've used "if(this.phrase.includes(letter)).
                 return true; //matching letter is found.
             }
         }
         return false; //phrase was looped through and no match is found.
-    } //NOTE: Concise one-liner... return this.phrase.split('').includes(letter);
+    } 
+    //NOTE: One-liner code for checkLetter(letter) is return this.phrase.split('').includes(letter);
 
     showMatchedLetter(letter) { //Apply 'show' styling to matching letter.
-
         //In real time, my dynamically appended letters are shown on the game board as play selects them.
         $(`li.letter:contains(${letter})`).removeClass('hide').addClass('show');
     }

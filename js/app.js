@@ -5,37 +5,27 @@
 // for the start button and onscreen keyboard buttons
 
 
-// Created instance of the of the game class.
+//Created instance of the of the game class.
 const game = new Game();
 
-//Added click event listener to the Start Button and called startGame.
+//Adds functionality to the Start Game button.
 $("#btn__reset").on('click', () => game.startGame()); //get element by id and add click event.
 //startGame method called on game variable.
 
-//Added click to start button automatically whenever the 'ENTER' key is pressed.
-// $('#overlay').keypress((event) => {
-//     var keycode = (event.keyCode ? event.keyCode : event.which);
-//     if(keycode == 13){
-//         game.startGame();
-//         event.stopPropagation();
-//         return false;
-//     }
-// });
-
-//User mouse 'click' creates onscreen keyboard functionality.
+//EXTRA CREDIT: Keyboard to onscreen keyboard functionality.
 $(".key").on('click', (e) => game.handleInteraction($(e.target).text()));
 
-//EXTRA CREDIT! User keyboard creates onscreen keyboard functionality.
+//EXTRA EXTRA CREDIT: Enter key starts game!
 $('body').on('keyup', (e) => {
     const keycode = (event.keyCode ? event.keyCode : event.which); //variable containing boolean value... program doesn't like event.keyCode sometimes.
     if($('#overlay').is(":visible")) {
         if(keycode == 13){ //the enter key is the 13th key; if the enter key is pressed...
-            game.startGame(); //the overlay will count it the same as the button being clicked and game will start.
-            event.stopPropagation(); //this will stop the key up from stacking events on all subsequent events
+            game.startGame(); //game will start b/c the Enter key counts as a button click.
+            event.stopPropagation(); //stops subsequent events from stacking up Enter keypress.
             return false;
         }
-    } else { //otherwise..
-        game.handleInteraction(e.key);//events will take place when user interacts by clicking keys. 
+    } else {
+        game.handleInteraction(e.key);//otherwise, events occur with user interaction. 
     }
 });
 

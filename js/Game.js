@@ -91,10 +91,9 @@ class Game {
             $gameOver.empty().text("TRY AGAIN!").css('color', 'red'); //will print the lose message on the overlay
         } 
         this.resetGame();
-        //location.reload(true); //TEMPORARY CODE: automatically reloads page after wins or losses for infinite games.
     }
 
-    handleInteraction(letter) { //Use my variables.... // needs to be able to use .key for extra credit part.
+    handleInteraction(letter) {
         const button = $(`.key:contains(${letter})`); //keyboard buttons
         button.attr("disabled", true);
         if (!this.activePhrase.checkLetter(letter)) {//If the letter chosen by the user does not match the active phrase
@@ -104,13 +103,13 @@ class Game {
             this.activePhrase.showMatchedLetter(letter); //otherwise, the matched letter is shown and...
             button.addClass("chosen"); //css styling for .chosen is applied to the key.            
             if(this.checkForWin()) {
-                this.gameOver(true); //the Winning message overlay will show.
+                this.gameOver(true); //the winning message overlay will show.
             }
         }
     }
 
     resetGame() { //Reset the game board between games. "Start Game" button will load a new game.
-        // location.reload(true); //truly refreshes/cleanses the page of old game garbage.
+        // location.reload(true); restarts a new game automatically after each game over.
 
         //Reset Active Phrase.
         this.activePhrase = null;
