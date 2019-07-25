@@ -66,16 +66,15 @@ class Game {
         return false; // otherwise the play has not won
     }
 
-    removeLife() { // Assigned lost heart image to a variable. Image e to be added with each missed letter
-        const $lives = $('img'); //assigned heart image to lives variable
+    removeLife() {
+        const $lives = $('img'); //Image to be added with each missed letter
         const $livesLost = $lives[this.missed];//The lost heart object
         
         $($livesLost).attr('src', "images/lostHeart.png"); //Switches attribute of the heart from live to lost.
         this.missed ++; //Add a lost heart with each miss or wrong letter
         
-        if(this.missed === 5) { //Game is over when 5 missed hearts are reached
-           this.removeLife(); //calling remove life method
-           this.gameOver().restartGame(); //game is over but it is not won //false
+        if(this.missed === 5) { //comparing the # of misses to hearts. Game is over when 5 missed hearts are reached
+           this.gameOver(false); //game is over but it is not won //false
         }
     }
 
@@ -111,13 +110,13 @@ class Game {
     }
 
     resetGame() { //Reset the game board between games. "Start Game" button will load a new game.
-        location.reload(true); //truly refreshes/cleanses the page of old game garbage.
+        // location.reload(true); //truly refreshes/cleanses the page of old game garbage.
 
         //Reset Active Phrase.
         this.activePhrase = null;
         
         // Reset lives.
-        this.missed == 0;
+        this.missed = 0;//resetting lost hearts to 0.
 
         //Remove all 'li' elements from the Phrase 'ul' element.
         $('#phrase ul li').remove(); //remove placeholders from the screen. Game restart will append them again.

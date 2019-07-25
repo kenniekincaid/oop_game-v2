@@ -176,7 +176,7 @@ button {
   right: 0;
   border-radius: 5px;
   background-image: url("https://jllsly.com/wallpapers/hello-kitty-images-Is-Cool-Wallpapers.jpg");
-  background-size: cover;
+  background-size: 100% 100%                                                                  grt5;
 }
 
 .title {
