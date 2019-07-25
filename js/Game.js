@@ -75,7 +75,7 @@ class Game {
         
         if(this.missed === 5) { //Game is over when 5 missed hearts are reached
            this.removeLife(); //calling remove life method
-           this.gameOver(); //game is over but it is not won //false
+           this.gameOver().restartGame(); //game is over but it is not won //false
         }
     }
 
@@ -110,7 +110,9 @@ class Game {
         }
     }
 
-    resetGame() { //Reset the gameboard between games. "Start Game" button will load a new game.
+    resetGame() { //Reset the game board between games. "Start Game" button will load a new game.
+        location.reload(true); //truly refreshes/cleanses the page of old game garbage.
+
         //Reset Active Phrase.
         this.activePhrase = null;
         
@@ -126,6 +128,6 @@ class Game {
 
         //Reset all of the heart images (players lives) in the scoerboard and at the bottom of the 
             //gameboard to display the 'liveHeart.png' image. 
-        $(".tries img").attr("src", "images/liveHeart.png"); //reset lives  
+        $(".tries img").attr("src", "images/liveHeart.png", true); //reset lives
     }
 }
