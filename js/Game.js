@@ -68,14 +68,14 @@ class Game {
 
     removeLife() { // Assigned lost heart image to a variable. Image e to be added with each missed letter
         const $lives = $('img'); //assigned heart image to lives variable
-        const $livesLost = $lives[this.missed];
+        const $livesLost = $lives[this.missed];//The lost heart object
         
-        $livesLost.src("images/lostHeart.png"); //lost lives heart image
+        $($livesLost).attr('src', "images/lostHeart.png"); //Switches attribute of the heart from live to lost.
         this.missed ++; //Add a lost heart with each miss or wrong letter
         
         if(this.missed === 5) { //Game is over when 5 missed hearts are reached
-            this.gameOver(false); //game is over but it is not won
-            this.removeLife(); //calling remove life method
+           this.removeLife(); //calling remove life method
+           this.gameOver(); //game is over but it is not won //false
         }
     }
 
@@ -86,12 +86,13 @@ class Game {
 
         if (gameWon == true) { //if player is a winner
             $overlay.removeClass("start").addClass("win"); //change css styling to .win
-            $gameOver.empty().text("YOU WON!") //will print the win mess on the overlay
+            $gameOver.empty().text("YOU WON!").css('color', 'yellow'); //will print the win mess on the overlay
         } else {
             $overlay.removeClass("start").addClass("lose"); //change css styling to .lose
-            $gameOver.empty().text("TRY AGAIN!"); //will print the lose message on the overlay
+            $gameOver.empty().text("TRY AGAIN!").css('color', 'red'); //will print the lose message on the overlay
         } 
-        this.resetGame(new Game);
+        this.resetGame();
+        //location.reload(true); //TEMPORARY CODE: automatically reloads page after wins or losses for infinite games.
     }
 
     handleInteraction(letter) { //Use my variables.... // needs to be able to use .key for extra credit part.
@@ -117,7 +118,7 @@ class Game {
         this.missed == 0;
 
         //Remove all 'li' elements from the Phrase 'ul' element.
-        $('#phrase ul li').remove(); //remove letter list items from the phrase section.
+        $('#phrase ul li').remove(); //remove placeholders from the screen. Game restart will append them again.
 
         //Enable all of the onscreen keyboard buttons and update ech to use the 'key' CSS class and not
             //use the 'chosen' or 'wrong' CSS classes.
