@@ -52,45 +52,44 @@ class Game {
     startGame() {
         $('#overlay').hide(); //hides the start screen overlay;
         this.activePhrase = this.getRandomPhrase();  // gets a random phrase
-        this.activePhrase.addPhraseToDisplay();
-    } //Codes are working up to this point!
+        this.activePhrase.addPhraseToDisplay(); // add active phrase to display
+    } 
 
 
 //USER INTERACTION:
     checkForWin() {
-        const playerLetters = $('.hide').length;     
+        const playerLetters = $('.hide').length; //loop through all of the letters
        
         if (playerLetters == 0) { // if player selected all letters in the phrase
-            return true;
+            return true; //the player has won
         }
-        return false;
+        return false; // otherwise the play has not won
     }
 
     removeLife() { // Assigned lost heart image to a variable. Image e to be added with each missed letter
         const $lives = $('img'); //assigned heart image to lives variable
         const $livesLost = $lives[this.missed];
-        // $livesLost.src = images.lostHeart.png;
-        $livesLost.src = $("src", "images/lostHeart.png")
-
-        this.missed ++; //Adding a missed life
         
-        if(this.missed === 5) { //game lost if all 5 missed hearts are added.
-            this.gameOver(false);
-            this.removeLife();
+        $livesLost.src("images/lostHeart.png"); //lost lives heart image
+        this.missed ++; //Add a lost heart with each miss or wrong letter
+        
+        if(this.missed === 5) { //Game is over when 5 missed hearts are reached
+            this.gameOver(false); //game is over but it is not won
+            this.removeLife(); //calling remove life method
         }
     }
 
     gameOver(gameWon) {
-        const $overlay = $('#overlay'); 
-        const $gameOver = $('#game-over-message');
+        const $overlay = $('#overlay');  //variable for the overlay
+        const $gameOver = $('#game-over-message'); //variable to target the message element
         $overlay.show().removeClass("start"); //removes the start class so the lose or win classes can be appended
 
-        if (gameWon == true) {
-            $overlay.removeClass("start").addClass("win");
-            $gameOver.empty().text("YOU WON!")
+        if (gameWon == true) { //if player is a winner
+            $overlay.removeClass("start").addClass("win"); //change css styling to .win
+            $gameOver.empty().text("YOU WON!") //will print the win mess on the overlay
         } else {
-            $overlay.removeClass("start").addClass("lose");
-            $gameOver.empty().text("TRY AGAIN!");
+            $overlay.removeClass("start").addClass("lose"); //change css styling to .lose
+            $gameOver.empty().text("TRY AGAIN!"); //will print the lose message on the overlay
         } 
         this.resetGame(new Game);
     }
@@ -126,8 +125,6 @@ class Game {
 
         //Reset all of the heart images (players lives) in the scoerboard and at the bottom of the 
             //gameboard to display the 'liveHeart.png' image. 
-        $(".tries img").attr("src", "images/liveHeart.png"); //reset lives
-        
-        
+        $(".tries img").attr("src", "images/liveHeart.png"); //reset lives  
     }
 }

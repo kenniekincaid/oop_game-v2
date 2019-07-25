@@ -35,6 +35,8 @@ class Phrase {
     } //NOTE: Concise one-liner... return this.phrase.split('').includes(letter);
 
     showMatchedLetter(letter) { //Apply 'show' styling to matching letter.
+
+        //In real time, my dynamically appended letters are shown on the game board as play selects them.
         $(`li.letter:contains(${letter})`).removeClass('hide').addClass('show');
     }
 }

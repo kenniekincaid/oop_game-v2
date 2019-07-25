@@ -22,20 +22,20 @@ $("#btn__reset").on('click', () => game.startGame()); //get element by id and ad
 //     }
 // });
 
-//User mouse 'click'  to onscreen keyboardfunctionality.
+//User mouse 'click' creates onscreen keyboard functionality.
 $(".key").on('click', (e) => game.handleInteraction($(e.target).text()));
 
-//EXTRA CREDIT! User keyboard to onscreen keyboard functionality.
+//EXTRA CREDIT! User keyboard creates onscreen keyboard functionality.
 $('body').on('keyup', (e) => {
-    const keycode = (event.keyCode ? event.keyCode : event.which);
+    const keycode = (event.keyCode ? event.keyCode : event.which); //variable containing boolean value... program doesn't like event.keyCode sometimes.
     if($('#overlay').is(":visible")) {
-        if(keycode == 13){
-            game.startGame();
-            event.stopPropagation();
+        if(keycode == 13){ //the enter key is the 13th key; if the enter key is pressed...
+            game.startGame(); //the overlay will count it the same as the button being clicked and game will start.
+            event.stopPropagation(); //this will stop the key up from stacking events on all subsequent events
             return false;
         }
-    } else {
-        game.handleInteraction(e.key);
+    } else { //otherwise..
+        game.handleInteraction(e.key);//events will take place when user interacts by clicking keys. 
     }
 });
 
