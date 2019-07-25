@@ -69,12 +69,14 @@ class Game {
     removeLife() { // Assigned lost heart image to a variable. Image e to be added with each missed letter
         const $lives = $('img'); //assigned heart image to lives variable
         const $livesLost = $lives[this.missed];
-        $livesLost.src = "images/lostHeart.png";
-            
+        // $livesLost.src = images.lostHeart.png;
+        $livesLost.src = $("src", "images/lostHeart.png")
+
         this.missed ++; //Adding a missed life
         
         if(this.missed === 5) { //game lost if all 5 missed hearts are added.
             this.gameOver(false);
+            this.removeLife();
         }
     }
 
@@ -89,9 +91,8 @@ class Game {
         } else {
             $overlay.removeClass("start").addClass("lose");
             $gameOver.empty().text("TRY AGAIN!");
-        }
-            resetGame(new Game);
-
+        } 
+        this.resetGame(new Game);
     }
 
     handleInteraction(letter) { //Use my variables.... // needs to be able to use .key for extra credit part.
@@ -116,7 +117,6 @@ class Game {
         // Reset lives.
         this.missed == 0;
 
-        
         //Remove all 'li' elements from the Phrase 'ul' element.
         $('#phrase ul li').remove(); //remove letter list items from the phrase section.
 

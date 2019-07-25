@@ -13,25 +13,30 @@ $("#btn__reset").on('click', () => game.startGame()); //get element by id and ad
 //startGame method called on game variable.
 
 //Added click to start button automatically whenever the 'ENTER' key is pressed.
-$('#overlay').keypress((event) => {
-    var keycode = (event.keyCode ? event.keyCode : event.which);
-    if(keycode == 13){
-        game.startGame();
-        event.stopPropagation();
-        return false;
-    }
-});
+// $('#overlay').keypress((event) => {
+//     var keycode = (event.keyCode ? event.keyCode : event.which);
+//     if(keycode == 13){
+//         game.startGame();
+//         event.stopPropagation();
+//         return false;
+//     }
+// });
 
 //User mouse 'click'  to onscreen keyboardfunctionality.
 $(".key").on('click', (e) => game.handleInteraction($(e.target).text()));
 
 //EXTRA CREDIT! User keyboard to onscreen keyboard functionality.
 $('body').on('keyup', (e) => {
-    // if the overlay is visible
-        // if keycode is 13
-            // game.startGame()
-    // else 
-    game.handleInteraction(e.key);
+    const keycode = (event.keyCode ? event.keyCode : event.which);
+    if($('#overlay').is(":visible")) {
+        if(keycode == 13){
+            game.startGame();
+            event.stopPropagation();
+            return false;
+        }
+    } else {
+        game.handleInteraction(e.key);
+    }
 });
 
   
